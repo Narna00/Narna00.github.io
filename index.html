@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Prince Amoako Atta — Cybersecurity & Data Analyst. Portfolio: projects, skills, contact." />
+  <meta name="author" content="Prince Amoako Atta" />
+  <title>Prince Amoako Atta — Cybersecurity & Data Analyst</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SAMPLE" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* Simplified, flat color system — no heavy gradients or glass overlays */
+    :root{
+      --bg: #0B1220;       /* page background (flat) */
+      --surface: #0F1B2D;   /* section surface */
+      --card: #162536;      /* card background */
+      --muted: #9FB0C8;     /* secondary text */
+      --text: #E6EEF6;      /* main text */
+      --accent: #06B6D4;    /* primary accent (teal) */
+      --accent-2: #00A3C4;  /* secondary accent */
+      --border: rgba(255,255,255,0.04);
+      --radius: 12px;
+      --max-width: 1100px;
+      color-scheme: dark;
+    }
+
+    /* Light theme (kept simple) */
+    html.light{ --bg:#F6F8FA; --surface:#FFFFFF; --card:#FFFFFF; --muted:#5A6B7A; --text:#0B1220; --accent:#0EA5A4; --border: rgba(11,18,32,0.06); color-scheme: light }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:var(--text); scroll-behavior:smooth}
+
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
+
+    /* Header / Nav — flat bar, no blur */
+    header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{font-weight:700;letter-spacing:0.2px;font-family:'Space Grotesk', sans-serif;display:flex;align-items:center;gap:10px}
+    .brand img{width:40px;height:40px;border-radius:8px;object-fit:cover}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600}
+    .nav-links a.active, .nav-links a:hover{background:transparent;color:var(--accent);text-decoration:underline}
+
+    /* mobile */
+    .menu-btn{display:none;border:0;background:transparent;color:var(--muted);font-size:20px}
+    @media (max-width:820px){
+      .nav-links{display:none;position:absolute;right:20px;top:64px;background:var(--card);padding:12px;border-radius:12px;flex-direction:column;min-width:200px;color:var(--muted);box-shadow:0 6px 20px rgba(2,6,23,0.5)}
+      .menu-btn{display:inline-flex}
+      header.open .nav-links{display:flex}
+    }
+
+    /* Hero — flat, clear contrast */
+    .hero{padding:64px 0 32px;display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
+    .hero .eyebrow{color:var(--muted);font-weight:600}
+    .hero h1{font-size:34px;margin:8px 0 6px;line-height:1.05;font-weight:800}
+    .hero p.lead{color:var(--muted);margin:18px 0;font-size:16px}
+    .ctas{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--accent);border:0;padding:10px 16px;border-radius:10px;color:white;font-weight:700;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--muted)}
+    .profile-card{background:var(--card);padding:16px;border-radius:12px;text-align:center;border:1px solid var(--border)}
+    .profile-card img{width:100%;height:300px;object-fit:cover;border-radius:8px;margin-bottom:12px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+    .tag{background:transparent;padding:6px 10px;border-radius:999px;font-weight:600;color:var(--muted);font-size:13px;border:1px solid var(--border)}
+
+    @media (max-width:980px){.hero{grid-template-columns:1fr;}.profile-card img{height:220px}}
+
+    /* About */
+    .about{padding:36px 0;background:transparent}
+    .about .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+    .about h2{color:var(--accent);font-size:26px;margin:0}
+    .about p{color:var(--muted);line-height:1.6}
+    @media (max-width:900px){.about .grid{grid-template-columns:1fr}}
+
+    /* Skills / Interests */
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{background:transparent;padding:8px 12px;border-radius:999px;font-weight:600;color:var(--muted);border:1px solid var(--border)}
+
+    /* Projects */
+    .projects{padding:36px 0}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .project{background:var(--card);border-radius:10px;padding:14px;overflow:hidden;display:flex;flex-direction:column;gap:12px;transition:transform .2s ease,box-shadow .2s ease;border:1px solid var(--border)}
+    .project:hover{transform:translateY(-6px);box-shadow:0 8px 20px rgba(2,6,23,0.45)}
+    .project img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+    .project h3{margin:0;font-size:18px}
+    .project p{color:var(--muted);font-size:14px}
+    .project .meta{display:flex;justify-content:space-between;align-items:center}
+    .tag-cta{cursor:pointer;background:transparent;border:0;color:var(--accent);font-weight:700}
+    @media (max-width:1100px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:680px){.projects-grid{grid-template-columns:1fr}}
+
+    /* Contact */
+    .contact-section{padding:36px 0;border-radius:12px}
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:24px}
+    .contact-card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--border)}
+    .socials{display:flex;gap:12px;flex-wrap:wrap}
+    .socials a{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:transparent;color:var(--muted);border:1px solid var(--border)}
+    @media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+
+    /* Footer */
+    footer{padding:28px 0;margin-top:40px;color:var(--muted)}
+    .back-to-top{position:fixed;right:20px;bottom:20px;padding:10px;border-radius:10px;background:var(--accent);color:white;border:0;display:none}
+    footer .small{font-size:13px;color:var(--muted)}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+
+    /* animations */
+    .fade-in{opacity:0;transform:translateY(8px);transition:opacity .45s ease, transform .45s ease}
+    .fade-in.in-view{opacity:1;transform:translateY(0)}
+
+    /* forms */
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:transparent;color:inherit}
+    label{display:block;margin-bottom:6px;font-weight:600;color:var(--muted)}
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="brand" aria-label="Prince Amoako Atta">
+      <img src="images/avatar.jpg" alt="Prince Amoako Atta avatar" onerror="this.style.display='none'">
+      <div>
+        <div style="font-size:14px;opacity:.9">Prince Amoako Atta</div>
+        <div style="font-size:12px;color:var(--muted)">Cybersecurity & Data Analyst</div>
+      </div>
+    </div>
+
+    <nav>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle menu"><i class="fa fa-bars"></i></button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <button class="btn ghost" id="themeToggle" aria-pressed="false" title="Toggle theme">🌗 Theme</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <!-- HERO -->
+  <section id="home" class="hero" aria-labelledby="hero-title">
+    <div>
+      <div class="eyebrow">Hello there</div>
+      <h1 id="hero-title">I am <span style="color:var(--accent)">Prince Amoako Atta</span><br><small class="muted">Cybersecurity • Data Analysis • Forensics</small></h1>
+      <p class="lead">I build dashboards, hunt threats, and secure systems - with a focus on practical protections for people and organizations across Africa and beyond.</p>
+
+      <div class="ctas">
+        <a class="btn" href="#projects">View Projects</a>
+        <a class="btn ghost" href="#contact">Contact Me</a>
+        <button class="btn ghost" id="copyEmail">Copy Email</button>
+      </div>
+
+      <div style="margin-top:18px">
+        <strong class="muted">Quick stats:</strong>
+        <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap">
+          <div class="tag">Bugcrowd Contributor</div>
+          <div class="tag">TryHackMe Top 3</div>
+          <div class="tag">Valedictorian</div>
+          <div class="tag">CTF Player</div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="profile-card fade-in" style="min-width:260px" aria-hidden="false">
+      <img src="images/prince.jpg" alt="Prince working" loading="lazy">
+      <div style="font-weight:800">Prince Amoako Atta</div>
+      <div class="muted" style="font-size:13px">Cybersecurity & Data Analyst</div>
+      <div class="tags" style="margin-top:12px">
+        <div class="tag">Ethical Hacking</div>
+        <div class="tag">Machine Learning</div>
+        <div class="tag">Data Visualization</div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about fade-in" aria-labelledby="about-title">
+    <div class="grid">
+      <div>
+        <h2 id="about-title">About Me</h2>
+        <p>I care deeply about how vulnerable systems are — especially across Africa. My work blends cybersecurity operations with data analysis so I can both protect infrastructure and extract meaningful insights from logs and telemetry. Whether it is building dashboards, performing pentests, or running forensic analysis, I keep one goal in mind: protect people.</p>
+        <p class="muted">Skills: Incident Response, Threat Hunting, Machine Learning, Malware Analysis, Python, Power BI, SQL.</p>
+      </div>
+      <div>
+        <div class="about-card contact-card">
+          <h3 style="margin-top:0">Interests & Tools</h3>
+          <div class="chips">
+            <div class="chip">Malware Analysis</div>
+            <div class="chip">Machine Learning</div>
+            <div class="chip">Computer Forensics</div>
+            <div class="chip">Python</div>
+            <div class="chip">Business Intelligence</div>
+            <div class="chip">Cryptography</div>
+            <div class="chip">SQL</div>
+            <div class="chip">Ethical Hacking</div>
+            <div class="chip">Threat Intelligence</div>
+            <div class="chip">Data Analytics</div>
+            <div class="chip">Data Visualization</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="projects fade-in" aria-labelledby="projects-title">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+      <h2 id="projects-title">Selected Projects</h2>
+      <a class="muted" href="https://github.com/Narna00?tab=repositories">See all</a>
+    </div>
+
+    <div class="projects-grid">
+      <!-- project card 1 -->
+      <article class="project" tabindex="0">
+        <img src="images/global_cyberthreat.png" alt="Global Cyber Threat Analysis" loading="lazy">
+        <h3>Global Cyber Threat Analysis</h3>
+        <p>Power BI dashboard showing global attacks (2015–2024) with sector and regional insights.</p>
+        <div class="meta">
+          <span class="muted">Power BI • Data Viz</span>
+          <button class="tag-cta" data-project='{"title":"Global Cyber Threat Analysis","desc":"Full Power BI dashboard with drill-downs and regional analysis.","img":"images/global_cyberthreat.png"}'>Details →</button>
+        </div>
+      </article>
+
+      <!-- project card 2 -->
+      <article class="project" tabindex="0">
+        <img src="images/checker.png" alt="Password Strength Checker" loading="lazy">
+        <h3>Password Strength Checker</h3>
+        <p>Python module that evaluates passwords and suggests stronger alternatives.</p>
+        <div class="meta">
+          <span class="muted">Python • Security</span>
+          <button class="tag-cta" data-project='{"title":"Password Strength Checker","desc":"CLI & library to assess and recommend secure passwords.","img":"images/checker.png"}'>Details →</button>
+        </div>
+      </article>
+
+      <!-- project card 3 -->
+      <article class="project" tabindex="0">
+        <img src="images/dencrypter.png" alt="AES Encryption Tool" loading="lazy">
+        <h3>AES Encryption & Decryption Tool</h3>
+        <p>CLI tool using Python cryptography (Fernet) for symmetric encryption and decryption.</p>
+        <div class="meta">
+          <span class="muted">Python • Crypto</span>
+          <button class="tag-cta" data-project='{"title":"AES Encryption Tool","desc":"Secure message encryption & decryption using Fernet.","img":"images/dencrypter.png"}'>Details →</button>
+        </div>
+      </article>
+
+      <!-- other projects -->
+      <article class="project" tabindex="0">
+        <img src="images/police.png" alt="US Police Shootings Analysis" loading="lazy">
+        <h3>US Police Shootings Analysis</h3>
+        <p>Dashboard exploring demographic patterns, threat perception and trends across incidents.</p>
+        <div class="meta">
+          <span class="muted">Excel • Data Sci</span>
+          <button class="tag-cta" data-project='{"title":"US Police Shootings Analysis","desc":"Ethical data analysis and visualization of sensitive datasets.","img":"images/police.png"}'>Details →</button>
+        </div>
+      </article>
+
+      <article class="project" tabindex="0">
+        <img src="images/udemy.png" alt="Udemy Course Analysis" loading="lazy">
+        <h3>Udemy Course Analysis</h3>
+        <p>Course performance and revenue trends to guide strategy and pricing decisions.</p>
+        <div class="meta">
+          <span class="muted">Power BI</span>
+          <button class="tag-cta" data-project='{"title":"Udemy Course Analysis","desc":"Insights into course performance and subscriber behaviour.","img":"images/udemy.png"}'>Details →</button>
+        </div>
+      </article>
+
+      <article class="project" tabindex="0">
+        <img src="images/fame.png" alt="Famous People Analysis" loading="lazy">
+        <h3>Famous People in Entertainment</h3>
+        <p>Interactive Power BI + SQL analysis of entertainment industry figures and trends.</p>
+        <div class="meta">
+          <span class="muted">SQL • BI</span>
+          <button class="tag-cta" data-project='{"title":"Famous People Analysis","desc":"Power BI driven analyses with SQL-backed data models.","img":"images/fame.png"}'>Details →</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section fade-in" aria-labelledby="contact-title">
+    <div style="display:flex;gap:24px;align-items:start;flex-wrap:wrap">
+      <div style="flex:1;min-width:300px">
+        <h2 id="contact-title">Contact</h2>
+        <p class="muted">Phone: (+233) 508411044 • Email: <a href="mailto:princeamoakoatta22@gmail.com">princeamoakoatta22@gmail.com</a></p>
+
+        <div class="contact-card">
+          <form id="contactForm" novalidate>
+            <label for="name">Your name</label>
+            <input id="name" name="name" required placeholder="Francisca Larbi">
+
+            <label for="email">Your email</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com">
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required placeholder="Hi Prince — I'd like to talk about..."></textarea>
+
+            <div style="display:flex;gap:8px;margin-top:12px">
+              <button class="btn" type="submit">Send</button>
+              <button class="btn ghost" type="button" id="clearForm">Clear</button>
+            </div>
+            <div id="formMsg" class="muted" style="margin-top:12px"></div>
+          </form>
+        </div>
+
+      </div>
+
+      <aside style="width:340px;min-width:240px">
+        <div class="contact-card center">
+          <img src="images/avatar.jpg" alt="Prince avatar" style="width:120px;height:120px;border-radius:12px;object-fit:cover;margin-bottom:12px" onerror="this.style.display='none'">
+          <h3 style="margin:4px 0 2px">Prince Amoako Atta</h3>
+          <div class="muted" style="font-size:13px;margin-bottom:12px">Real-world focused cybersecurity and data analysis</div>
+          <div class="socials">
+            <a href="https://discord.com/users/943273520186675261" aria-label="Discord"><i class="fab fa-discord"></i> Discord</a>
+            <a href="https://twitter.com/hackernarna" aria-label="Twitter"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="https://www.linkedin.com/in/narna00/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/narna00" aria-label="GitHub"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="center">
+    <p class="small">© <span id="year"></span> — Prince Amoako Atta • Built with ⚡ performance & ❤️</p>
+  </footer>
+
+  <button id="backTop" class="back-to-top" aria-label="Back to top">↑</button>
+
+</main>
+
+<!-- Project Modal (lightweight) -->
+<div id="projModal" aria-hidden="true" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:200">
+  <div style="max-width:900px;width:100%;background:var(--card);border-radius:12px;padding:18px;box-shadow:0 30px 60px rgba(2,6,23,0.6);position:relative">
+    <button id="closeModal" aria-label="Close" style="position:absolute;right:12px;top:12px;border:0;background:transparent;color:var(--muted);font-size:18px"><i class="fa fa-times"></i></button>
+    <div id="projContent"></div>
+  </div>
+</div>
+
+<script>
+  // small DOM helpers
+  const qs = s => document.querySelector(s);
+  const qsa = s => Array.from(document.querySelectorAll(s));
+
+  // set year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu toggle
+  const menuBtn = qs('#menuBtn');
+  menuBtn.addEventListener('click', ()=>{
+    const open = document.documentElement.classList.toggle('nav-open');
+    document.documentElement.classList.toggle('open');
+    const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+    menuBtn.setAttribute('aria-expanded', String(!expanded));
+  });
+
+  // Smooth active link management
+  const navLinks = qsa('.nav-link');
+  navLinks.forEach(a=>a.addEventListener('click', ()=>{ if(window.innerWidth<820){ document.documentElement.classList.remove('open'); document.getElementById('menuBtn').setAttribute('aria-expanded','false') }}));
+
+  // IntersectionObserver for fade-in and active nav
+  const sections = qsa('section');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        const id = e.target.id;
+        qsa('.nav-link').forEach(link=>link.classList.toggle('active', link.getAttribute('href') === '#'+id));
+      }
+    });
+  },{threshold:0.22});
+  sections.forEach(s=>io.observe(s));
+
+  // Project modal
+  const modal = qs('#projModal');
+  const projContent = qs('#projContent');
+  qsa('.tag-cta').forEach(btn=>btn.addEventListener('click', ()=>{
+    const data = JSON.parse(btn.dataset.project);
+    projContent.innerHTML = `<div style="display:flex;gap:18px;flex-wrap:wrap"><img src="${data.img}" alt="${data.title}" style="width:320px;height:200px;object-fit:cover;border-radius:8px"><div style="flex:1"><h2>${data.title}</h2><p class="muted">${data.desc}</p><p style=\"margin-top:12px\"><a class='btn' href='#'>View repository / demo</a></p></div></div>`;
+    modal.style.display='flex'; modal.setAttribute('aria-hidden','false');
+  }));
+  qs('#closeModal').addEventListener('click', ()=>{ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); projContent.innerHTML=''; });
+  modal.addEventListener('click', e=>{ if(e.target===modal){ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); }});
+
+  // Back to top
+  const back = qs('#backTop');
+  window.addEventListener('scroll', ()=>{ if(window.scrollY>400) back.style.display='inline-block'; else back.style.display='none' });
+  back.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  // Copy email
+  qs('#copyEmail').addEventListener('click', async ()=>{
+    try{ await navigator.clipboard.writeText('princeamoakoatta22@gmail.com'); alert('Email copied to clipboard'); }catch(e){ location.href='mailto:princeamoakoatta22@gmail.com' }
+  });
+
+  // Simple contact form (client-side only) — replace with server endpoint as needed
+  const form = qs('#contactForm');
+  const formMsg = qs('#formMsg');
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const msg = form.message.value.trim();
+    if(!name || !email || !msg){ formMsg.textContent = 'Please fill out all fields.'; return }
+    formMsg.textContent = 'Preparing message...';
+    // fallback: open mail client with prefilled content
+    const subject = encodeURIComponent('Portfolio contact from ' + name);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+    window.location.href = `mailto:princeamoakoatta22@gmail.com?subject=${subject}&body=${body}`;
+    formMsg.textContent = '';
+  });
+  qs('#clearForm').addEventListener('click', ()=>{ form.reset(); formMsg.textContent=''; });
+
+  // Theme toggle (persisted)
+  const themeToggle = qs('#themeToggle');
+  const setTheme = mode => { if(mode==='light'){ document.documentElement.classList.add('light'); themeToggle.innerText='🌙 Theme'; themeToggle.setAttribute('aria-pressed','true') } else { document.documentElement.classList.remove('light'); themeToggle.innerText='🌗 Theme'; themeToggle.setAttribute('aria-pressed','false') } };
+  const saved = localStorage.getItem('site-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  setTheme(saved);
+  themeToggle.addEventListener('click', ()=>{ const next = document.documentElement.classList.contains('light') ? 'dark' : 'light'; setTheme(next); localStorage.setItem('site-theme', next); });
+
+  // Keyboard: open project card with Enter
+  qsa('.project').forEach(card=>card.addEventListener('keydown', e=>{ if(e.key==='Enter'){ const btn = card.querySelector('.tag-cta'); if(btn) btn.click(); }}));
+
+  // Lazy reveal for profile card
+  const profile = qs('.profile-card');
+  const pio = new IntersectionObserver(entries=>{ entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('in-view'); }); },{threshold:0.25});
+  if(profile) pio.observe(profile);
+
+</script>
+</body>
+</html>
